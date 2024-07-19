@@ -1,6 +1,6 @@
 ## Project Description
 
-- Made by: Hassaan, Anna Goncharova, Josh
+- Made by: Hassaan Abbasi, Anna Goncharova, Josh Baker
 - The GMMS is a web-based application that acts as a centralized platform for managing
 maintenance operations. It serves as a centralized platform that helps to automate and
 schedule maintenance activities, track them, and ensure these activities are completed in a
