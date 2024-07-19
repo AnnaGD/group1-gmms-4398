@@ -19,8 +19,7 @@ by promoting more organized and systematic approach to maintenance system.
 - pdoc for API documentation that follows the project's Python module hierarchy.
 - Docker for containerization, ensuring the application can be easily set up and run across different environments.
 
-
-/Project Structure
+Project Structure
 |-- app
 |   |-- __init__.py
 |   |-- models.py
