@@ -22,7 +22,7 @@ build:
 
 # Start the Docker containers
 up:
-	$(COMPOSE) -f $(COMPOSE_FILE) up -d
+	$(COMPOSE) -f $(COMPOSE_FILE) up -d --build
 
 # Stop and remove containers, networks, etc.
 down:

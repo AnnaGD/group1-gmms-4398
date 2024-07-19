@@ -1,7 +1,7 @@
 services:
   web: 
     build:
-      context: app
+      context: .
       target: dev-envs
     # flask requires SIGINT to stop gracefully
     # (default stop signal from Compose is SIGTERM)
@@ -9,4 +9,4 @@ services:
     ports:
       - '5000:5000'
     volumes:
-      - ./app:/app
+      - ./:/app
