@@ -48,26 +48,28 @@ Setting up your local environment to run the GMMS application is straightforward
 
 ### Setup Instructions
 
-1. **Clone the repository**: Clone the GMMS project to your local machine.
-2. **Navigate to the project directory**: Open a terminal and change into the project's root directory.
-3. **Build the Docker images**: Run the command `make build` to build Docker images for the front-end and back-end services.
-4. **Start the application**: Execute `make up` to start all services in detached mode. This command uses Docker Compose to run the services defined in `compose.yaml`.
-5. **Access the application**:
+### Setup Instructions
+
+1. **Clone the repository**: Clone the project repository to your local machine.
+2. **Navigate to the project directory**: Open a terminal and change to the project's root directory.
+3. **Build the Docker images**: Run the command `make build` to build Docker images for the web service.
+4. **Start the application**: Execute `make up` to start the service in detached mode. This command uses Docker Compose to run the service defined in `compose.yaml`.
+5. **Access the application**: Ensure the application is running by visiting `http://localhost:5000` in your web browser.
 
 ### Available Make Commands
 
-- `make build` - Builds Docker images for the front-end and back-end.
-- `make up` - Starts all services in detached mode.
+- `make build` - Builds Docker images for the web service.
+- `make up` - Starts the service in detached mode.
 - `make stop` - Stops all running services without removing them.
 - `make down` - Stops and removes all containers, networks, and volumes.
-- `make remove-image` - Removes the Docker images for all services.
-- `make bash-front` - Opens a bash shell in the running front-end container.
-- `make bash-back` - Opens a bash shell in the running back-end container.
+- `make remove-image` - Removes the Docker images for the service.
+- `make shell` - Opens a shell in the running web container. Useful for debugging and quick commands.
+- `make logs` - Displays logs from the running containers.
+- `make test` - Runs tests using pytest within the web service container.
+- `make doc` - Generates documentation for the project using pdoc and saves it to the `/docs` directory.
 
-- `docker ps` -  Lists all running containers.
-- `docker stats` - Shows resource usage of all running containers.
+For additional details on each command, you can run `make help` to see a list of all available commands and their descriptions.
 
-For more details on each command, you can run `make help` to see a list of all available commands and their descriptions.
 
 **SQLite**
 > We’re using SQLlite for the DataBase in the backend. In `update to python file` the back-end initializes the schemas inside back-end/sqlitedb/schemas. Each table should have it’s own schema so it’s easier to maintain.
