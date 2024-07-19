@@ -32,7 +32,7 @@ by promoting more organized and systematic approach to maintenance system.
 |   `-- test_routes.py
 |-- docs
 |-- Dockerfile
-|-- docker-compose.yml
+|-- compose.yaml
 |-- requirements.txt
 |-- .gitignore
 `-- README.md
@@ -44,7 +44,7 @@ Setting up your local environment to run the GMMS application is straightforward
 ### Prerequisites
 
 1. Ensure you have Docker installed on your system. If not, download and install Docker from [Docker's official website](https://docs.docker.com/get-docker/).
-2. Ensure your system runs `make` commands. Run the command `make help` in a terminal to check. On Windows, it is recommended to install [GNU make](https://www.gnu.org/software/make/) through [Chocolatey](https://chocolatey.org/install), using the command `choco install make`.
+2. Ensure your system runs `make` commands. Run the command `make help` in a terminal to check.
 
 ### Setup Instructions
 
@@ -52,7 +52,7 @@ Setting up your local environment to run the GMMS application is straightforward
 2. **Navigate to the project directory**: Open a terminal and change into the project's root directory.
 3. **Build the Docker images**: Run the command `make build` to build Docker images for the front-end and back-end services.
 4. **Start the application**: Execute `make up` to start all services in detached mode. This command uses Docker Compose to run the services defined in `compose.yaml`.
-5. **Access the application**: Once the services are up, the front-end will be accessible at `http://localhost:3000`, and the back-end APIs at `http://localhost:8080`.
+5. **Access the application**:
 
 ### Available Make Commands
 
