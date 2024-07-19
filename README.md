@@ -48,8 +48,6 @@ Setting up your local environment to run the GMMS application is straightforward
 
 ### Setup Instructions
 
-### Setup Instructions
-
 1. **Clone the repository**: Clone the project repository to your local machine.
 2. **Navigate to the project directory**: Open a terminal and change to the project's root directory.
 3. **Build the Docker images**: Run the command `make build` to build Docker images for the web service.
