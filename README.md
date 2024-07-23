@@ -17,22 +17,21 @@ by promoting more organized and systematic approach to maintenance system.
 - SQLite for storing data. https://www.sqlite.org/docs.html
 - Pytest
 - pdoc for API documentation that follows the project's Python module hierarchy.
-- Docker for containerization, ensuring the application can be easily set up and run across different environments.
 
 ```
 Project Structure
-|-- app
+|-- .venv
+|-- bin
+|-- gmms
 |   |-- __init__.py
 |   |-- models.py
 |   |-- routes.py
 |   |-- templates/
-|   `-- static/
+|   |-- static/
 |-- tests
 |   |-- __init__.py
 |   `-- test_routes.py
 |-- docs
-|-- Dockerfile
-|-- compose.yaml
 |-- requirements.txt
 |-- .gitignore
 `-- README.md
