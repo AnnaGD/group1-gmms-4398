@@ -9,9 +9,23 @@ from flask import render_template
 def index():
     return render_template("index.html")
 
-@app.route('/customer')
+@app.route('/customer', methods=["POST", "GET"])
 def Customer():
-    return render_template("customer.html")
+    username = None
+    if "customer" in session:
+        customer = session["customer"]
+
+        if request.method == "POST":
+            username = request.form["username"]
+            session["username"] = username
+        else:
+            if "username" in session:
+                username = session["username"]
+
+        return render_template("customer.html", username=username)
+    else:
+        flash("You are not logged in!")
+        return redirect(url_for("login"))
 
 @app.route('/technician')
 def Technician():
@@ -20,3 +34,10 @@ def Technician():
 @app.route('/approver')
 def Approver():
     return render_template("approver.html")
+
+@app.route("/logout")
+def logout():
+    flash("You have been logged out!", "info")
+    session.pop("customer", None)
+    session.pop("username", None) #user logged out
+    return redirect(url_for("index"))
