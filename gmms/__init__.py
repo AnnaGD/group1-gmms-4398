@@ -1,16 +1,21 @@
-#Contains Flask app initialization, configuration loading, and imports for models and routes.
-
-import sys
-sys.dont_write_bytecode = True
 from flask import Flask
-#from .config import Config
+from datetime import timedelta
 
 app = Flask(__name__)
-#app.config.from_object(Config)
+app.secret_key = 'your_secret_key'
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5) #session will expire in 5 minutes, this should be changed after logout button implementation. 
 
-# Initialize DB with app
-#from .models import db, init_app
-#init_app(app)
+# Import and register blueprints
+from gmms.routes.main import main_bp
+from gmms.routes.customer import customer_bp
+from gmms.routes.technician import technician_bp
+from gmms.routes.approver import approver_bp
+from gmms.routes.register import register_bp
+from gmms.routes.login import login_bp
 
-# Import routes after app is created to avoid circular imports
-from gmms import routes
+app.register_blueprint(main_bp)
+app.register_blueprint(customer_bp)
+app.register_blueprint(technician_bp)
+app.register_blueprint(approver_bp)
+app.register_blueprint(register_bp)
+app.register_blueprint(login_bp)
