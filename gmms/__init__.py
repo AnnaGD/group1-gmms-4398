@@ -1,16 +1,27 @@
-#Contains Flask app initialization, configuration loading, and imports for models and routes.
-
-import sys
-sys.dont_write_bytecode = True
 from flask import Flask
-#from .config import Config
+from datetime import timedelta
+from gmms.models import db, init_app as init_db
+from gmms.routes.main import main_bp
+from gmms.routes.auth import auth_bp
+from gmms.routes.technician import technician_bp
+from gmms.routes.approver import approver_bp
 
 app = Flask(__name__)
-#app.config.from_object(Config)
+app.secret_key = 'your_secret_key'
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///yourdatabase.db'
 
-# Initialize DB with app
-#from .models import db, init_app
-#init_app(app)
+# Initialize the database
+init_db(app)
 
-# Import routes after app is created to avoid circular imports
-from gmms import routes
+# Register blueprints
+app.register_blueprint(main_bp)
+app.register_blueprint(auth_bp)
+app.register_blueprint(technician_bp)
+app.register_blueprint(approver_bp)
+
+with app.app_context():
+    db.create_all()
+
+if __name__ == '__main__':
+    app.run(debug=True)
