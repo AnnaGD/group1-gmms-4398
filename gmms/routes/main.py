@@ -10,21 +10,27 @@ def index():
 
 @main_bp.route('/customer_dashboard', methods=["GET", "POST"])
 def customer_dashboard():
+    # Check if the user is logged in by examining session data
     if "customer" not in session:
         flash("Please log in to access the dashboard.")
         return redirect(url_for('auth.auth'))
     
+    # Handle POST request: when a user submits a new work request via the dashboard form
     if request.method == "POST":
+        # Extract data from form fields
         title = request.form['title']
         description = request.form['description']
         
+        # Create a new WorkRequest object and populate it with data from the form
         new_request = WorkRequest(title=title, description=description)
-        db.session.add(new_request)
-        db.session.commit()
+        db.session.add(new_request) # Add the new request to the database session
+        db.session.commit() # Commit the transaction to save it to the database
         
+        # Notify the user that their request was submitted successfully
         flash("Work request submitted successfully.")
         return redirect(url_for('main.customer_dashboard'))
     
+    # For GET requests or after handling POST, render the customer dashboard template
     return render_template("CustomerDashboard.html")
 
 @main_bp.route('/technician_dashboard')
