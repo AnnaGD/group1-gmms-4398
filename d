@@ -1,0 +1,25 @@
+  [31mAnnaGD/Hassaan[m
+  [31mAnnaGD/Hassaan-Test[m
+  [31mAnnaGD/boilerplate-setup[m
+  [31mAnnaGD/josh-baker[m
+  [31mAnnaGD/main[m
+  [31mAnnaGD/repo-setup[m
+  [31mdev1/Hassaan[m
+  [31mdev1/Hassaan-Test[m
+  [31mdev1/boilerplate-setup[m
+  [31mdev1/josh-baker[m
+  [31mdev1/main[m
+  [31mdev1/repo-setup[m
+  [31mdeveloper/Hassaan[m
+  [31mdeveloper/Hassaan-Test[m
+  [31mdeveloper/boilerplate-setup[m
+  [31mdeveloper/josh-baker[m
+  [31mdeveloper/main[m
+  [31mdeveloper/repo-setup[m
+  [31morigin/HEAD[m -> origin/main
+  [31morigin/Hassaan[m
+  [31morigin/Hassaan-Test[m
+  [31morigin/boilerplate-setup[m
+  [31morigin/josh-baker[m
+  [31morigin/main[m
+  [31morigin/repo-setup[m
