@@ -1,3 +1,4 @@
+# main.py
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from gmms.models import db
 from gmms.models.work_request import WorkRequest
@@ -17,14 +18,25 @@ def customer_dashboard():
     
     # Handle POST request: when a user submits a new work request via the dashboard form
     if request.method == "POST":
-        # Extract data from form fields
-        title = request.form['title']
+        # Extract data from form fields based on the model definition in work_request.py
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        email = request.form['email']
+        department = request.form.get('department', '')  # Optional, provide default as empty string
+        equipment_id = request.form.get('equipment_id', '')  # Optional, provide default as empty string
         description = request.form['description']
-        
+
         # Create a new WorkRequest object and populate it with data from the form
-        new_request = WorkRequest(title=title, description=description)
-        db.session.add(new_request) # Add the new request to the database session
-        db.session.commit() # Commit the transaction to save it to the database
+        new_request = WorkRequest(
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            department=department,
+            equipment_id=equipment_id,
+            description=description
+        )
+        db.session.add(new_request)  # Add the new request to the database session
+        db.session.commit()  # Commit the transaction to save it to the database
         
         # Notify the user that their request was submitted successfully
         flash("Work request submitted successfully.")

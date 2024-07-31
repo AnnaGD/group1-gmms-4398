@@ -1,4 +1,4 @@
-from gmms import app
+from gmms import create_app
 from flask import render_template, request, redirect, url_for
 
 # Dummy user data for demonstration purposes.
@@ -8,32 +8,32 @@ users = {
 }
 
 # Route to the main index page
-@app.route('/')
+@create_app.route('/')
 def index():
     return render_template("index.html")
 
-@app.route('/customer')
+@create_app.route('/customer')
 def customer():
     return render_template("customer.html")
 
-@app.route('/technician')
+@create_app.route('/technician')
 def technician():
     return render_template("technician.html")
 
-@app.route('/approver')
+@create_app.route('/approver')
 def approver():
     return render_template("approver.html")
 
-@app.route('/register')
+@create_app.route('/register')
 def register():
     return render_template("register.html")
 
-@app.route('/CustomerDashboard')
+@create_app.route('/CustomerDashboard')
 def customer_dashboard():
     return render_template("CustomerDashboard.html")
 
 # Route for handling login functionality, accepts only POST requests
-@app.route('/login', methods=['POST'])
+@create_app.route('/login', methods=['POST'])
 def login():
     username = request.form['username']
     password = request.form['password']
@@ -46,4 +46,4 @@ def login():
         return redirect(url_for('register')) # Redirect to registration if login fails
 
 if __name__ == '__main__':
-    app.run(debug=True) # Run the server with debug mode enabled
+    create_app.run(debug=True) # Run the server with debug mode enabled
