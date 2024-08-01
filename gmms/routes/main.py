@@ -57,4 +57,7 @@ def approver_dashboard():
     if "approver" not in session:
         flash("Please log in to access the dashboard.")
         return redirect(url_for('auth.auth'))
-    return render_template("ApproverDashboard.html")
+        # retreive from the db
+    pending_work_orders = WorkRequest.query.all()
+    print("Workorder: ", pending_work_orders)
+    return render_template("ApproverDashboard.html", pending_work_orders=pending_work_orders)
