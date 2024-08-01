@@ -129,7 +129,30 @@
                         document.getElementById('description').textContent = data.description;
 
                         document.getElementById('work-order-details').style.display = 'block';
+                        document.querySelector('.list-group-item.active')?.classList.remove('active');
+                        event.target.closest('.list-group-item').classList.add('active');
                     });
+            }
+        });
+
+        document.getElementById('approve-btn').addEventListener('click', function() {
+            const activeItem = document.querySelector('.list-group-item.active');
+            if (activeItem) {
+                const id = activeItem.getAttribute('data-id');
+                fetch(`/approver/approve/${id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message || data.error);
+                    if (data.message) {
+                        activeItem.remove();
+                        document.getElementById('work-order-details').style.display = 'none';
+                    }
+                });
             }
         });
     </script>
