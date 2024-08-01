@@ -102,6 +102,8 @@
             <p><strong>Department:</strong> <span id="department"></span></p>
             <p><strong>Equipment ID:</strong> <span id="equipment-id"></span></p>
             <p><strong>Description:</strong> <span id="description"></span></p>
+            <p><strong>Comment:</strong> <textarea id="technician-comments"></textarea></p>
+            <button id="complete-btn" class="btn btn-success">Complete</button>
         </div>
     </div>
 
@@ -125,9 +127,35 @@
                         document.getElementById('department').textContent = data.department;
                         document.getElementById('equipment-id').textContent = data.equipment_id;
                         document.getElementById('description').textContent = data.description;
+                        document.getElementById('technician-comments').textContent = data.comment_section;
 
                         document.getElementById('work-order-details').style.display = 'block';
+                        document.querySelector('.list-group-item.active')?.classList.remove('active');
+                        event.target.closest('.list-group-item').classList.add('active');
                     });
+            }
+        });
+
+        document.getElementById('complete-btn').addEventListener('click', function() {
+            const activeItem = document.querySelector('.list-group-item.active');
+            if (activeItem) {
+                const id = activeItem.getAttribute('data-id');
+                const comments = document.getElementById('technician-comments').textContent;
+                fetch(`/technician/complete/${id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ comments: comments })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message || data.error);
+                    if (data.message) {
+                        activeItem.remove();
+                        document.getElementById('work-order-details').style.display = 'none';
+                    }
+                });
             }
         });
     </script>
