@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
-from gmms.models.customer import Customer, db
+from gmms.models.customer import Customer
 
 customer_bp = Blueprint('customer', __name__)
 

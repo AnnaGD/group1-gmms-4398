@@ -10,7 +10,6 @@ from gmms.routes.approver import approver_bp
 def create_app(config_name=None):
     # Create an instance of the Flask class. This is the WSGI application.
     app = Flask(__name__)
-    print('Falsk app:', __name__)
 
     if config_name == "testing":
         app.config['TESTING'] = True

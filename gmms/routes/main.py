@@ -35,8 +35,8 @@ def customer_dashboard():
             equipment_id=equipment_id,
             description=description
         )
-        #db.session.add(new_request)  # Add the new request to the database session
-        #db.session.commit()  # Commit the transaction to save it to the database
+        db.session.add(new_request)  # Add the new request to the database session
+        db.session.commit()  # Commit the transaction to save it to the database
         
         # Notify the user that their request was submitted successfully
         flash("Work request submitted successfully.")
@@ -57,4 +57,7 @@ def approver_dashboard():
     if "approver" not in session:
         flash("Please log in to access the dashboard.")
         return redirect(url_for('auth.auth'))
-    return render_template("ApproverDashboard.html")
+        # retreive from the db
+    pending_work_orders = WorkRequest.query.all()
+    print("Workorder: ", pending_work_orders)
+    return render_template("ApproverDashboard.html", pending_work_orders=pending_work_orders)

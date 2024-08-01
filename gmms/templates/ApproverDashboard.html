@@ -60,6 +60,17 @@
     <div class="dashboard-container">
         <h1>Approver Dashboard</h1>
         <p>Welcome, Approver!</p>
+
+    </div>
+    <div id="all-work-orders-div" class="">
+        {% for work_order in pending_work_orders %}
+        <input
+            type="checkbox"
+            id="{{work_order.id}}"
+            name="{{work_order.id}}"
+            value="{{work_order.id}}" />
+      <label for="{{work_order.id}}">{{work_order.description}}</label>
+        {% endfor %}
     </div>
 
     <script>
@@ -68,6 +79,9 @@
             // Handle logout logic here
             window.location.href = '/auth?form_type=login';
         });
+
+        document.getElementById('all-work-order-div') 
+        htmlButton.addEventListener('click')
     </script>
 </body>
 </html>
