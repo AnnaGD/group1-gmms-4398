@@ -1,5 +1,4 @@
 # work_request.py
-# work_request.py
 from gmms.models import db
 
 class WorkRequest(db.Model):
@@ -10,4 +9,4 @@ class WorkRequest(db.Model):
     department = db.Column(db.String(255), nullable=True)
     equipment_id = db.Column(db.String(255), nullable=True)
     description = db.Column(db.Text, nullable=False)
-    # status = db.Column(db.String(50), nullable=False)  # Add this line  
+    status = db.Column(db.String(50), nullable=False, default="pending")  # Add this line  
