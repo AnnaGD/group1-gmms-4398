@@ -4,7 +4,7 @@ from gmms.models import db
 
 approver_bp = Blueprint('approver', __name__)
 
-@approver_bp.route('/approver', methods=["GET"])
+@approver_bp.route('/approver_dashboard', methods=["GET"])
 def approver_dashboard():
     if 'approver' not in session:
         flash("Please log in as an approver.", "danger")

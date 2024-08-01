@@ -6,6 +6,7 @@ from gmms.routes.main import main_bp
 from gmms.routes.auth import auth_bp
 from gmms.routes.technician import technician_bp
 from gmms.routes.approver import approver_bp
+from gmms.routes.customer import customer_bp
 
 def create_app(config_name=None):
     # Create an instance of the Flask class. This is the WSGI application.
@@ -33,6 +34,7 @@ def create_app(config_name=None):
     app.register_blueprint(auth_bp) # Routes for user authentication
     app.register_blueprint(technician_bp) # Routes for technician-specific features
     app.register_blueprint(approver_bp) # Routes for approval-related features
+    app.register_blueprint(customer_bp) # Routes for approval-related features
 
     # Ensure all database tables are created at startup. This is done within the app context.
     with app.app_context():
