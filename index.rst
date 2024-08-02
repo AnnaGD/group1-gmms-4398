@@ -15,6 +15,11 @@ documentation for details.
    :maxdepth: 2
    :caption: Contents:
 
-   technician_dashboard
    customer_dashboard
+   app_index
+   approver_dashboard
+   auth
+   customer_dashboard
+   technician_dashboard
+
 

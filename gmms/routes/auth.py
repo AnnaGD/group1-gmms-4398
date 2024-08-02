@@ -50,7 +50,7 @@ def auth():
                 return redirect(url_for(dashboard)) # Redirect to the appropriate dashboard
             else:
                 flash("Invalid credentials, please register.")
-                return redirect(url_for('auth.auth'), 403)
+                return redirect(url_for('auth.auth'))
 
         elif form_type == 'register':
             # Registration logic: Check if the username already exists and handle new user registration
