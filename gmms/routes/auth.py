@@ -19,13 +19,13 @@ def auth():
             # Login logic: Depending on the user role, query the appropriate table
             if user_role == 'customer':
                 user = Customer.query.filter_by(username=username, password=password).first()
-                dashboard = 'main.customer_dashboard'
+                dashboard = 'customer.customer_dashboard'
             elif user_role == 'technician':
                 user = Technician.query.filter_by(username=username, password=password).first()
-                dashboard = 'main.technician_dashboard'
+                dashboard = 'technician.technician_dashboard'
             elif user_role == 'approver':
                 user = Approver.query.filter_by(username=username, password=password).first()
-                dashboard = 'main.approver_dashboard'
+                dashboard = 'approver.approver_dashboard'
 
             if user:
                 session[user_role] = user.username # Store user info in session for persistence across requests
