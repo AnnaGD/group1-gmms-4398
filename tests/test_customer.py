@@ -72,7 +72,7 @@ def test_customer_submits_ticket(test_client):
     last_name = "Potter"
     email = "seeker@mail.com"
     department = "Quidditch Equipment"
-    equipment_id = "Nimbus200"
+    equipment_id = "Nimbus2000"
     description = "Looses speed after 30 minutes of flight"
 
     # ensure no existing order with the same details
