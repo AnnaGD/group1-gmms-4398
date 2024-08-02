@@ -16,29 +16,34 @@ by promoting more organized and systematic approach to maintenance system.
 - Python for the back-end logic, offering robust and efficient server-side operations. 
 - SQLite for storing data. https://www.sqlite.org/docs.html
 - Pytest
-- pdoc for API documentation that follows the project's Python module hierarchy.
+- Pyreverse - [Pyreverse](https://pylint.readthedocs.io/en/latest/pyreverse.html)
+- [Sphinx](https://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html) - for API documentation that follows the project's Python module hierarchy.
 
 ```
 Project Structure
 |-- .venv
 |-- bin
 |-- gmms
-|   |-- __init__.py
-|   |-- routes.py
 |   |-- templates/
-|   |-- static/
+|   |-- routes/
+|   |-- models/
+|   |-- __init__.py
+|   |-- config.py
+|   |-- reset_db.py
 |-- tests
 |   |-- __init__.py
-|   `-- test_routes.py
-|-- docs
+|   |-- conftest.py
+|   |-- test_approver.py
+|   |-- test_authy.py
+|   |-- test_customer.py
+|   |-- test_home.py
+|   |-- test_technician.py
 |-- requirements.txt
 |-- .gitignore
-`-- README.md
+|-- README.md
 ```
 ## Local Environment Setup
 
 1. Quickinstall guide: (https://flask.palletsprojects.com/en/3.0.x/quickstart/).
 2. User guide for additional in depth info: (https://flask.palletsprojects.com/en/3.0.x/#user-s-guide).
 
-**SQLite**
-> We’re using SQLlite for the DataBase in the backend. In `update to python file` the back-end initializes the schemas inside back-end/sqlitedb/schemas. Each table should have it’s own schema so it’s easier to maintain.

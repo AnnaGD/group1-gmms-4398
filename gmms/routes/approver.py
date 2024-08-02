@@ -6,6 +6,16 @@ approver_bp = Blueprint('approver', __name__)
 
 @approver_bp.route('/approver_dashboard', methods=["GET"])
 def approver_dashboard():
+    """
+    Serve the dashboard page to approvers showing all pending work orders.
+
+    Requires the user to be logged in as an approver. Redirects to the authentication
+    page if not authenticated.
+
+    Returns:
+        - Redirect to login: If user is not logged in as approver.
+        - HTML template: The approver dashboard page with pending work orders listed.
+    """
     if 'approver' not in session:
         flash("Please log in as an approver.", "danger")
         return redirect(url_for('auth.auth'), 403)
@@ -15,6 +25,16 @@ def approver_dashboard():
 
 @approver_bp.route('/approver/work_order/<int:work_order_id>', methods=["GET"])
 def get_work_order(work_order_id):
+    """
+    Fetch and return JSON data for a specific work order based on its ID.
+
+    Args:
+        work_order_id (int): The ID of the work order to fetch.
+
+    Returns:
+        - JSON response: Details of the work order if found.
+        - JSON response: Error message if the work order is not found.
+    """
     work_order = WorkRequest.query.get(work_order_id)
     if work_order:
         return jsonify({
@@ -30,6 +50,16 @@ def get_work_order(work_order_id):
 
 @approver_bp.route('/approver/approve/<int:work_order_id>', methods=["POST"])
 def approve_work_order(work_order_id):
+    """
+    Approve a specified work order by its ID and update its status in the database.
+
+    Args:
+        work_order_id (int): The ID of the work order to approve.
+
+    Returns:
+        - JSON response: Success message if the work order is approved.
+        - JSON response: Error message if the work order is not found.
+    """
     work_order = WorkRequest.query.get(work_order_id)
     if work_order:
         work_order.status = 'approved'
@@ -39,6 +69,16 @@ def approve_work_order(work_order_id):
 
 @approver_bp.route('/approver/reject/<int:work_order_id>', methods=["POST"])
 def reject_work_order(work_order_id):
+    """
+    Reject a specified work order by its ID and update its status in the database.
+
+    Args:
+        work_order_id (int): The ID of the work order to reject.
+
+    Returns:
+        - JSON response: Success message if the work order is rejected.
+        - JSON response: Error message if the work order is not found.
+    """
     work_order = WorkRequest.query.get(work_order_id)
     if work_order:
         work_order.status = 'rejected'
