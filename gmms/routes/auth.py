@@ -32,7 +32,7 @@ def auth():
                 return redirect(url_for(dashboard)) # Redirect to the appropriate dashboard
             else:
                 flash("Invalid credentials, please register.")
-                return redirect(url_for('auth.auth'))
+                return redirect(url_for('auth.auth'), 403)
 
         elif form_type == 'register':
             # Registration logic: Check if the username already exists and handle new user registration
@@ -45,7 +45,7 @@ def auth():
                 existing_user = Customer.query.filter_by(username=username).first()
                 if existing_user:
                     flash("Username already exists. Please choose a different one.")
-                    return redirect(url_for('auth.auth'))
+                    return redirect(url_for('auth.auth'), 409)
                 new_user = Customer(fullname=fullname, email=email, username=username, password=password, phone=phone)
             elif user_role == 'technician':
                 existing_user = Technician.query.filter_by(username=username).first()

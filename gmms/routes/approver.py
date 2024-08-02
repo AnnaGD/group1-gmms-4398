@@ -8,7 +8,7 @@ approver_bp = Blueprint('approver', __name__)
 def approver_dashboard():
     if 'approver' not in session:
         flash("Please log in as an approver.", "danger")
-        return redirect(url_for('auth.auth'))
+        return redirect(url_for('auth.auth'), 403)
 
     pending_work_orders = WorkRequest.query.filter_by(status='pending').all()  # Fetch only pending work orders
     return render_template("ApproverDashboard.html", pending_work_orders=pending_work_orders)
