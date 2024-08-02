@@ -7,6 +7,21 @@ customer_bp = Blueprint('customer', __name__)
 
 @customer_bp.route('/customer_dashboard', methods=["GET", "POST"])
 def customer_dashboard():
+    """
+    Serve or update the customer dashboard page.
+
+    This endpoint handles both GET and POST requests. For GET requests, it simply
+    renders the customer dashboard. For POST requests, it processes a new work request
+    submission by the customer.
+
+    Returns:
+        Redirect to the login page with a status code of 403 if the user is not logged in.
+        Redirect back to the dashboard with a success message if a work request is submitted successfully.
+        Render the customer dashboard page for GET requests and POST requests after submission.
+
+    Raises:
+        HTTP 403: If the user is not logged in and tries to access the dashboard.
+    """
     # Check if the user is logged in by examining session data
     if "customer" not in session:
         flash("Please log in to access the dashboard.")

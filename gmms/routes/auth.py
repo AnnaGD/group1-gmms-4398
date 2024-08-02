@@ -9,6 +9,24 @@ auth_bp = Blueprint('auth', __name__)
 # Define a route for authentication which handles both GET and POST requests
 @auth_bp.route('/auth', methods=["GET", "POST"])
 def auth():
+    """
+    Handle user authentication, including both login and registration.
+
+    This endpoint supports both GET and POST requests. GET requests return
+    the authentication page, whereas POST requests process submitted forms
+    for either logging in or registering new users.
+
+    Returns:
+        On POST:
+            Redirects to the appropriate dashboard if login is successful.
+            Returns an error message and redirects back to the auth page if login or registration fails.
+        On GET:
+            Renders and returns the authentication page template.
+
+    Raises:
+        HTTP 403: Returns an HTTP Forbidden status if login credentials are invalid.
+        HTTP 409: Returns an HTTP Conflict status if the registration username is already taken.
+    """
     if request.method == "POST": # Check if the current request is a POST request
         form_type = request.form['form_type'] # Get the type of form submitted ('login' or 'register')
         username = request.form['username'] # Retrieve username from form data
