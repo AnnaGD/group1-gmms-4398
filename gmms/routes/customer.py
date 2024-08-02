@@ -10,7 +10,7 @@ def customer_dashboard():
     # Check if the user is logged in by examining session data
     if "customer" not in session:
         flash("Please log in to access the dashboard.")
-        return redirect(url_for('auth.auth'))
+        return redirect(url_for('auth.auth'), 403)
     
     # Handle POST request: when a user submits a new work request via the dashboard form
     if request.method == "POST":
@@ -41,27 +41,27 @@ def customer_dashboard():
     # For GET requests or after handling POST, render the customer dashboard template
     return render_template("CustomerDashboard.html")
 
-@customer_bp.route('/customer/submit_request', methods=["POST"])
-def submit_request():
-    if request.method == "POST":
-        first_name = request.form['first_name']
-        last_name = request.form['last_name']
-        email = request.form['email']
-        department = request.form['department']
-        equipment_id = request.form['equipment_id']
-        description = request.form['description']
+# @customer_bp.route('/customer/submit_request', methods=["POST"])
+# def submit_request():
+#     if request.method == "POST":
+#         first_name = request.form['first_name']
+#         last_name = request.form['last_name']
+#         email = request.form['email']
+#         department = request.form['department']
+#         equipment_id = request.form['equipment_id']
+#         description = request.form['description']
 
-        # Create a new WorkRequest entry
-        work_request = WorkRequest(
-            first_name=first_name,
-            last_name=last_name,
-            email=email,
-            department=department,
-            equipment_id=equipment_id,
-            description=description
-        )
-        db.session.add(work_request)
-        db.session.commit()
+#         # Create a new WorkRequest entry
+#         work_request = WorkRequest(
+#             first_name=first_name,
+#             last_name=last_name,
+#             email=email,
+#             department=department,
+#             equipment_id=equipment_id,
+#             description=description
+#         )
+#         db.session.add(work_request)
+#         db.session.commit()
 
-        flash("Your request has been submitted!", "success")
-        return redirect(url_for('customer.customer_dashboard'))
+#         flash("Your request has been submitted!", "success")
+#         return redirect(url_for('customer.customer_dashboard'))
